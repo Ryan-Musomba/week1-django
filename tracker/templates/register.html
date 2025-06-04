@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden">
+    <div class="p-8">
+      <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Register</h1>
+      
+      <form method="post" class="space-y-6">
+        {% csrf_token %}
+        
+        {% if form.errors %}
+        <div class="bg-red-50 text-red-700 p-3 rounded-lg text-sm">
+          {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+              {{ error }}<br>
+            {% endfor %}
+          {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div class="relative">
+          <input 
+            type="text" 
+            name="username" 
+            placeholder="Username" 
+            required
+            class="w-full p-4 pl-12 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          >
+          <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+        
+        <div class="relative">
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Email" 
+            required
+            class="w-full p-4 pl-12 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          >
+          <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+        
+        <div class="relative">
+          <input 
+            type="password" 
+            name="password1" 
+            placeholder="Password" 
+            required
+            class="w-full p-4 pl-12 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          >
+          <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+        
+        <div class="relative">
+          <input 
+            type="password" 
+            name="password2" 
+            placeholder="Confirm Password" 
+            required
+            class="w-full p-4 pl-12 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          >
+          <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+        
+        <label class="flex items-center space-x-2 text-sm text-gray-600">
+          <input type="checkbox" class="rounded text-indigo-600">
+          <span>I agree to terms & conditions</span>
+        </label>
+        
+        <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition">
+          Register
+        </button>
+        
+        <div class="text-center text-sm text-gray-600">
+          Already have an account? 
+          <a href="{% url 'login' %}" class="text-indigo-600 font-medium hover:underline">Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
